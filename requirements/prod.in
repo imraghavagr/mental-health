@@ -1,2 +1,12 @@
 wincertstore
 numpy
+requests
+fastapi
+uvicorn
+python-dotenv
+aiofiles
+python-multipart
+jinja2
+Markdown
+pytest
+Pillow
