@@ -1,4 +1,8 @@
+ipykernel
 wincertstore
 numpy
-ipykernel
-pycaret
+pandas
+sklearn
+matplotlib
+seaborn
+plotly
