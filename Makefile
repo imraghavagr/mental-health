@@ -12,10 +12,6 @@ pip-tools:
 
 # Recipe for activating the conda environment within the sub-shell as a target, from https://stackoverflow.com/a/55696820/13749426
 .ONESHELL:
-shell := /bin/$(ps | grep `echo $$` | awk '{ print $4 }')
-print:
-	ps | grep `echo $$` | awk '{ print $4 }'
-	@echo "${shell}";
 # Need to specify bash in order for conda activate to work, otherwise it will try to use the default shell, which is "zsh" in this case
 SHELL = /bin/zsh
 
