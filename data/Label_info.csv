@@ -1,0 +1,36 @@
+Question,Label
+Select your gender,gender
+How old are you?,age
+Education,education
+Marital status,marital
+Income,income
+Do you have any loan?,loan
+How many friends do you have?,friend_no
+Do you think your friends are helpful?,friend_help
+How many friends do you interact with in a day?,friend_interact
+Do you genuinely can share your thoughts and feelings to someone?,share_feel
+Do you have someone to think about that makes you feel happy ?,have_someone
+Do you feel lonely?,lonely
+Did you ever been bullied?,bullied
+Do you think at least one member of your family supports  you no matter what?,family_support
+Do you compare your life with others?,compare_life
+How much time do you spend in social media in a day?,social_media
+How many days do you hangout with your friends in a week?,hangout
+How much time do you spend at home in a day?,home_time
+Are you religious?,religious
+Do you have a goal to achieve in life?,goal
+Do you think your life is worth living?,suicidal
+Do you suffer from any kind of sleeping disorder?,sleep_disorder
+Do you suffer from any of these?,mental_disorder
+Do you think you are loved by at least one person?,love_someone
+Do you think there is someone who is unable to go on without you?,die_someone
+Do your thoughts command you to act upon them?,thoughts_command
+Did you ever thought of harming yourself?,self_harm
+Have you ever acted upon your thoughts?,thoughts_acted
+Are you having these thoughts recently which force you to act upon?,thoughts_acted2
+At what time of the day do you have these thoughts?,thoughts_time
+Did you ever hear any voice inside your head?,voices
+Did you ever have any thought of harming others?,harming_others
+Did you ever thought of taking your life?,suicide
+Have you told anyone that you want to take your life or harm others?,suicidal_thoughts
+Did you ever receive any psychiatric/ professional help whenever you felt super down?,therapy
