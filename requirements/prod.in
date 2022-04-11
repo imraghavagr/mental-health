@@ -1,12 +1,10 @@
 wincertstore
 numpy
 requests
-fastapi
-uvicorn
+pycaret[full]
 python-dotenv
 aiofiles
 python-multipart
 jinja2
 Markdown
-pytest
 Pillow

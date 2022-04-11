@@ -1,8 +1,4 @@
 wincertstore
 numpy
-pandas 
-sklearn
 ipykernel
-matplotlib
-seaborn
-plotly
+pycaret
