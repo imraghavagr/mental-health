@@ -6,3 +6,5 @@ sklearn
 matplotlib
 seaborn
 plotly
+click
+kaggle
