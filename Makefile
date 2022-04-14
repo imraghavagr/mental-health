@@ -1,11 +1,11 @@
-.PHONY: clean 
+.PHONY: clean data help
 
 #################################################################################
 # GLOBALS                                                                       #
 #################################################################################
 
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-DATA_URL := 
+DATA_URL := faruqui682/mental-health-survey
 DATA_DIR := $(PROJECT_DIR)/data/raw/
 
 ifeq (,$(shell which conda))
@@ -20,7 +20,8 @@ endif
 
 clean:
 	@# Help: Clean the data/raw/ directory
-	rm -f data/raw/*.csv
+	rm -f $(DATA_DIR)*.csv
+	rm -f $(DATA_DIR)*.zip
 
 # For windows
 conda-update:
@@ -54,24 +55,23 @@ ifeq (True,$(HAS_CONDA))
 	@echo ">>> Detected conda, creating/updating conda environment."
 	conda env update --prune -f env.yml
 	$(CONDA_ACTIVATE) mentalHealth
-	pip-compile requirements/dev.in && pip-compile requirements/prod.in
-	pip-sync requirements/dev.txt && pip-sync requirements/prod.txt
-	pip install "pycaret[full]"
+	pip-compile requirements/dev.in
+	pip-sync requirements/dev.txt
+#pip install "pycaret[full]"
 else
 	@echo ">>> conda not detected, please use a shell configured with conda. Use "Anaconda Prompt" for Windows. Please download and install Anaconda if you don't already have it. Exiting..."
 endif
 
-.active:
-	@echo "Activating conda environment"
-	$(CONDA_ACTIVATE)
 
-data/raw/iris.csv: .active
+data:
 	@# Help: Download the data from the source and save it to the data/raw/ directory
-	python scripts/data/download.py "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data" $@
+	$(CONDA_ACTIVATE) mentalHealth
+	kaggle datasets download $(DATA_URL) -p $(DATA_DIR)
+	unzip $(DATA_DIR)*.zip -d $(DATA_DIR)
+	rm -f $(DATA_DIR)*.zip
 
 
 .DEFAULT_GOAL := help
-.PHONY: help
 # Arcane incantation to print all the targets along with their descriptions mentioned with "@# Help: <<Description>>", from https://stackoverflow.com/a/65243296/13749426. Check https://stackoverflow.com/a/20983251/13749426 and https://stackoverflow.com/a/28938235/13749426 for coloring terminal outputs.
 help:
 	@printf "%-20s %s\n" "Target" "Description"
