@@ -23,10 +23,10 @@ clean:
 	rm -f data/raw/*.csv
 
 # For windows
-.conda-update:
+conda-update:
 	@# Help: Update conda environment
 ifeq (True,$(HAS_CONDA))
-			@echo ">>> Detected conda, creating conda environment."
+			@echo ">>> Detected conda, creating/updating conda environment."
 			conda env update --prune -f env.yml
 
 
@@ -51,11 +51,12 @@ CONDA_ACTIVATE = source $$(conda info --base)/etc/profile.d/conda.sh ; conda act
 conda-pip:
 	@# Help: Create/update conda env and install the exact pip packages into it
 ifeq (True,$(HAS_CONDA))
-	@echo ">>> Detected conda, creating conda environment."
+	@echo ">>> Detected conda, creating/updating conda environment."
 	conda env update --prune -f env.yml
 	$(CONDA_ACTIVATE) mentalHealth
 	pip-compile requirements/dev.in && pip-compile requirements/prod.in
 	pip-sync requirements/dev.txt && pip-sync requirements/prod.txt
+	pip install "pycaret[full]"
 else
 	@echo ">>> conda not detected, please use a shell configured with conda. Use "Anaconda Prompt" for Windows. Please download and install Anaconda if you don't already have it. Exiting..."
 endif
