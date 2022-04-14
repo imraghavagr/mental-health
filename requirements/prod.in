@@ -1,11 +1,9 @@
 certifi
 wincertstore
 numpy
-requests
 python-dotenv
 aiofiles
 python-multipart
 jinja2
 Markdown
 Pillow
-sklearn
