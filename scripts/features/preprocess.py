@@ -5,9 +5,9 @@ from sklearn import preprocessing
 le = preprocessing.LabelEncoder()
 
 #reading the dataset
-df = pd.read_csv('/home/raghav/codes_new/mental-health/data/raw/Mental Health Checker.csv')
+df = pd.read_csv('../../data/raw/Mental Health Checker.csv')
 
-#removing 'Timstamp' column
+#removing 'Timestamp' column
 df.drop(['Timestamp'],axis = 1,inplace=True)
 
 #filling null values
@@ -18,6 +18,8 @@ for x in df.columns:
 #label encoding
 for x in df.columns:
     df[x] = le.fit_transform(df[x])
+
+
 
 
 
