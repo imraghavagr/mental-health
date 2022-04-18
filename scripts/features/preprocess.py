@@ -23,8 +23,8 @@ def preprocess(path, target_path):
             df[x].fillna(df[x].mode()[0],inplace=True)
     
     #label encoding
-    # for x in df.columns:
-    #     df[x] = le.fit_transform(df[x])
+    for x in df.columns:
+        df[x] = le.fit_transform(df[x])
     
     df.to_csv(target_path, index=False, )
     print(f'Preprocessed the raw data from {path} and saved it to {target_path}')
