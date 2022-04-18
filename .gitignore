@@ -11,6 +11,10 @@ __pycache__/
 # C extensions
 *.so
 
+catboost_info/
+flagged/
+*.log
+
 # Distribution / packaging
 .Python
 build/
@@ -55,3 +59,4 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+

@@ -7,6 +7,8 @@
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 DATA_URL := faruqui682/mental-health-survey
 DATA_DIR := $(PROJECT_DIR)/data/raw/
+DATA_PROCESSED_DIR := $(PROJECT_DIR)/data/processed/
+SCRIPT_DIR := $(PROJECT_DIR)/scripts/
 
 ifeq (,$(shell which conda))
 HAS_CONDA=False
@@ -69,6 +71,11 @@ data:
 	kaggle datasets download $(DATA_URL) -p $(DATA_DIR)
 	unzip $(DATA_DIR)*.zip -d $(DATA_DIR)
 	rm -f $(DATA_DIR)*.zip
+
+preprocess:
+	@# Help: Preprocess the data and save it to the $(DATA_PROCESSED_DIR) directory
+	$(CONDA_ACTIVATE) mentalHealth
+	python $(SCRIPT_DIR)features/preprocess.py $(DATA_DIR) $(DATA_PROCESSED_DIR)
 
 
 .DEFAULT_GOAL := help
