@@ -13,3 +13,6 @@ jinja2
 Markdown
 Pillow
 python-decouple
+watermark
+pytest
+openpyxl
