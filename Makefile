@@ -55,13 +55,8 @@ ifeq (True,$(HAS_CONDA))
 	@echo ">>> Detected conda, creating/updating conda environment."
 	conda env update --prune -f env.yml
 	$(CONDA_ACTIVATE) mentalHealth
-<<<<<<< HEAD
-	pip-compile requirements/dev.in
-	pip-sync requirements/dev.txt
-=======
 	pip-compile requirements/req.in
 	pip-sync requirements/req.txt
->>>>>>> 475d0509f9a801a3e74b0b79305223971b07af0a
 	pip install "pycaret[full]"
 else
 	@echo ">>> conda not detected, please use a shell configured with conda. Use "Anaconda Prompt" for Windows. Please download and install Anaconda if you don't already have it. Exiting..."
