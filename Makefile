@@ -43,7 +43,7 @@ endif
 # Recipe for activating the conda environment within the sub-shell as a target, from my solution at https://stackoverflow.com/a/71548453/13749426
 .ONESHELL:
 # Need to specify bash in order for conda activate to work, otherwise it will try to use the default shell, which is "zsh" in this case
-SHELL = /bin/zsh
+SHELL = /bin/bash
 
 # Note that the extra activate is needed to ensure that the activate floats env to the front of PATH, otherwise it will not work
 CONDA_ACTIVATE = source $$(conda info --base)/etc/profile.d/conda.sh ; conda activate ; conda activate
@@ -57,7 +57,7 @@ ifeq (True,$(HAS_CONDA))
 	$(CONDA_ACTIVATE) mentalHealth
 	pip-compile requirements/dev.in
 	pip-sync requirements/dev.txt
-#pip install "pycaret[full]"
+	pip install "pycaret[full]"
 else
 	@echo ">>> conda not detected, please use a shell configured with conda. Use "Anaconda Prompt" for Windows. Please download and install Anaconda if you don't already have it. Exiting..."
 endif
