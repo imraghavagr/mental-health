@@ -6,8 +6,6 @@ from sklearn import preprocessing
 le = preprocessing.LabelEncoder()
 
 
-
-
 @click.command()
 @click.argument('path', type=click.Path())
 @click.argument('target_path', type=click.Path())
