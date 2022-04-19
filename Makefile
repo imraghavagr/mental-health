@@ -77,7 +77,7 @@ data:
 preprocess:
 	@# Help: Preprocess the data and save it to the $(DATA_PROCESSED_DIR) directory
 	$(CONDA_ACTIVATE) mentalHealth
-	python $(SCRIPT_DIR)features/preprocess.py $(DATA_DIR) $(DATA_PROCESSED_DIR)
+	python $(SCRIPT_DIR)features/preprocess.py $(DATA_INTERIM_DIR) $(DATA_PROCESSED_DIR)
 
 app:
 	@# Help: Run the FastAPI app
