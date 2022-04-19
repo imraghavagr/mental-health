@@ -5,7 +5,6 @@ df1 = pd.read_csv('../../data/raw/Mental Health Checker.csv')
 df2 = pd.read_csv('../../data/raw/survey.csv')
 
 #droping unnecessary features from df1 and df2
-
 df1.drop('Timestamp',axis=1,inplace=True)
 df2.drop(columns=['Timestamp','Username','Please enter your name','How comfortable were you with the Survey Questions?','Please feel free to provide any kind of feedback!'],axis = 1,inplace=True)
 
@@ -59,10 +58,6 @@ df3['thoughts_time'].replace(to_replace="Night",value="night",inplace=True)
 df3['thoughts_time'].replace(to_replace="Evening",value="evening",inplace=True)
 df3['thoughts_time'].replace(to_replace="Morning",value="morning",inplace=True)
 
-# handling missing values
-for x in df3.columns:
-    if df3[x].isnull().sum()>0:
-        df3[x].fillna(df3[x].mode()[0],inplace=True)
 
 #saving new csv file inside 'processed' directory
-df3.to_csv('../../data/processed/completeData.csv',index=False)
+df3.to_csv('../../data/interim/completeData.csv',index=False)

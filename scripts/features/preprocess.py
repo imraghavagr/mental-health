@@ -11,11 +11,9 @@ le = preprocessing.LabelEncoder()
 @click.argument('target_path', type=click.Path())
 def preprocess(path, target_path):
     """Preprocess the locally downloaded file and store it in a new directory."""
-    path = path+"Mental Health Checker.csv"
+    path = path+"completeData.csv"
     target_path = target_path+"processed_data.csv"
     df = pd.read_csv(path)
-    #removing 'Timestamp' column
-    df.drop(['Timestamp'],axis = 1,inplace=True)
 
     #filling null values
     for x in df.columns:
