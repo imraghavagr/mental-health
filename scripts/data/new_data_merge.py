@@ -2,7 +2,7 @@ import pandas as pd
 
 ##reading both datasets
 df1 = pd.read_csv('../../data/raw/Mental Health Checker.csv')
-df2 = pd.read_csv('../../data/raw/survey_latest.csv')
+df2 = pd.read_csv('../../data/raw/survey.csv')
 
 #droping unnecessary features from df1 and df2
 
@@ -65,4 +65,4 @@ for x in df3.columns:
         df3[x].fillna(df3[x].mode()[0],inplace=True)
 
 #saving new csv file inside 'processed' directory
-df3.to_csv('../data/processed/completeData.csv',index=False)
+df3.to_csv('../../data/processed/completeData.csv',index=False)
