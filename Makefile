@@ -93,6 +93,8 @@ app:
 docker:
 	@# Help: Build the docker image
 	DOCKER_BUILDKIT=1 docker build -f "Dockerfile" -t mentalhealth .
+	docker tag mentalhealth:latest mentalhealth:v1.0.0
+	docker run -d -p 8000:8000 mentalhealth
 
 .DEFAULT_GOAL := help
 # Arcane incantation to print all the targets along with their descriptions mentioned with "@# Help: <<Description>>", from https://stackoverflow.com/a/65243296/13749426. Check https://stackoverflow.com/a/20983251/13749426 and https://stackoverflow.com/a/28938235/13749426 for coloring terminal outputs.
