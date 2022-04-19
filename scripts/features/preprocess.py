@@ -12,7 +12,7 @@ le = preprocessing.LabelEncoder()
 def preprocess(path, target_path):
     """Preprocess the locally downloaded file and store it in a new directory."""
     path = path+"completeData.csv"
-    target_path = target_path+"processed_data.csv"
+    target_path = target_path+"processed_data2.csv"
     df = pd.read_csv(path)
 
     #filling null values
@@ -20,9 +20,9 @@ def preprocess(path, target_path):
         if df[x].isnull().sum()>0:
             df[x].fillna(df[x].mode()[0],inplace=True)
     
-    #label encoding
-    for x in df.columns:
-        df[x] = le.fit_transform(df[x])
+    # #label encoding
+    # for x in df.columns:
+    #     df[x] = le.fit_transform(df[x])
     
     df.to_csv(target_path, index=False, )
     print(f'Preprocessed the raw data from {path} and saved it to {target_path}')
