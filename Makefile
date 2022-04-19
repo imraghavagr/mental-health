@@ -71,8 +71,10 @@ data:
 	@# Help: Download the data from the source and save it to the data/raw/ directory
 	$(CONDA_ACTIVATE) mentalHealth
 	kaggle datasets download $(DATA_URL) -p $(DATA_DIR)
-	unzip $(DATA_DIR)*.zip -d $(DATA_DIR)
+	unzip $(DATA_DIR)*.zip -d $(DATA_DIR) -A
 	rm -f $(DATA_DIR)*.zip
+	wget --no-check-certificate --output-document=$(DATA_DIR)survey.csv 'https://docs.google.com/spreadsheets/d/1Zga_eVHZOktbAgTKevxUL_2cQlkQCJjsw4WA_tyHn2w/export?format=csv'
+
 
 preprocess:
 	@# Help: Preprocess the data and save it to the $(DATA_PROCESSED_DIR) directory
