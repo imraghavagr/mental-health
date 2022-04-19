@@ -1,6 +1,5 @@
 
 import pandas as pd
-import click
 from pycaret.classification import load_model, predict_model
 from fastapi import FastAPI
 import uvicorn
