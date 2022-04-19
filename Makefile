@@ -7,8 +7,10 @@
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 DATA_URL := faruqui682/mental-health-survey
 DATA_DIR := $(PROJECT_DIR)/data/raw/
+DATA_INTERIM_DIR := $(PROJECT_DIR)/data/interim/
 DATA_PROCESSED_DIR := $(PROJECT_DIR)/data/processed/
 SCRIPT_DIR := $(PROJECT_DIR)/scripts/
+ARTIFACT_DIR := $(PROJECT_DIR)/artifacts/
 
 ifeq (,$(shell which conda))
 HAS_CONDA=False
@@ -77,6 +79,14 @@ preprocess:
 	$(CONDA_ACTIVATE) mentalHealth
 	python $(SCRIPT_DIR)features/preprocess.py $(DATA_DIR) $(DATA_PROCESSED_DIR)
 
+app:
+	@# Help: Run the FastAPI app
+	$(CONDA_ACTIVATE) mentalHealth
+	python $(SCRIPT_DIR)api/app.py
+
+docker:
+	@# Help: Build the docker image
+	DOCKER_BUILDKIT=1 docker build -f "Dockerfile" -t mentalhealth .
 
 .DEFAULT_GOAL := help
 # Arcane incantation to print all the targets along with their descriptions mentioned with "@# Help: <<Description>>", from https://stackoverflow.com/a/65243296/13749426. Check https://stackoverflow.com/a/20983251/13749426 and https://stackoverflow.com/a/28938235/13749426 for coloring terminal outputs.
