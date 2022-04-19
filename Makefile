@@ -73,6 +73,10 @@ data:
 	kaggle datasets download $(DATA_URL) -p $(DATA_DIR)
 	unzip $(DATA_DIR)*.zip -d $(DATA_DIR)
 	rm -f $(DATA_DIR)*.zip
+data_merge:
+	@# Help: Combine existing data and latest survey data and save it to$(DATA_INTERIM_DIR) directory
+	$(CONDA_ACTIVATE) mentalHealth
+	python $(SCRIPT_DIR)data/new_data_merge.py $(DATA_DIR) $(DATA_INTERIM_DIR)
 
 preprocess:
 	@# Help: Preprocess the data and save it to the $(DATA_PROCESSED_DIR) directory
