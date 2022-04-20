@@ -7,7 +7,7 @@ from pycaret.classification import *
 @click.argument('target_path', type=click.Path())
 def train_model(data_path,target_path):
     """ Read the final processed data, train the optimal model and save the pkl file."""
-    target_path = target_path + 'finalRFmodel2_20APR2022'
+    target_path = target_path + 'finalRFmodel_21APR2022'
     data_path = data_path + 'processed_data.csv'
 
 

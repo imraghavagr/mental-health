@@ -27,6 +27,8 @@ clean:
 	@# Help: Clean the data/raw/ directory
 	rm -f $(DATA_DIR)*.csv
 	rm -f $(DATA_DIR)*.zip
+	rm -f $(DATA_INTERIM_DIR)*.csv
+	rm -f $(DATA_PROCESSED_DIR)*.csv
 
 # For windows
 conda-update:
@@ -70,7 +72,7 @@ data:
 	@# Help: Download the data from the source and save it to the data/raw/ directory
 	$(CONDA_ACTIVATE) mentalHealth
 	kaggle datasets download $(DATA_URL) -p $(DATA_DIR)
-	unzip $(DATA_DIR)*.zip -d $(DATA_DIR) -A
+	unzip $(DATA_DIR)*.zip -d $(DATA_DIR)
 	rm -f $(DATA_DIR)*.zip
 	wget --no-check-certificate --output-document=$(DATA_DIR)survey.csv 'https://docs.google.com/spreadsheets/d/1Zga_eVHZOktbAgTKevxUL_2cQlkQCJjsw4WA_tyHn2w/export?format=csv'
 
