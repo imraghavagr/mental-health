@@ -11,6 +11,7 @@ DATA_INTERIM_DIR := $(PROJECT_DIR)/data/interim/
 DATA_PROCESSED_DIR := $(PROJECT_DIR)/data/processed/
 SCRIPT_DIR := $(PROJECT_DIR)/scripts/
 ARTIFACT_DIR := $(PROJECT_DIR)/artifacts/
+MODEL_DIR := $(ARTIFACT_DIR)/pycaretModels/
 
 ifeq (,$(shell which conda))
 HAS_CONDA=False
@@ -82,6 +83,12 @@ preprocess:
 	@# Help: Preprocess the data and save it to the $(DATA_PROCESSED_DIR) directory
 	$(CONDA_ACTIVATE) mentalHealth
 	python $(SCRIPT_DIR)features/preprocess.py $(DATA_INTERIM_DIR) $(DATA_PROCESSED_DIR)
+
+train_model:
+	@# Help: Read the final processed data, train the optimal model and save the pkl file to $(MODEL_DIR) directory
+	$(CONDA_ACTIVATE) mentalHealth
+	python $(SCRIPT_DIR)model/train_model.py $(DATA_PROCESSED_DIR) $(MODEL_DIR)
+
 
 app:
 	@# Help: Run the FastAPI app
