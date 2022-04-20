@@ -15,7 +15,7 @@ def combineData(path,target_path):
 
     #droping unnecessary features from df1 and df2
     df1.drop('Timestamp',axis=1,inplace=True)
-    df2.drop(columns=['Timestamp','Username','Please enter your name','How comfortable were you with the Survey Questions?','Please feel free to provide any kind of feedback!'],axis = 1,inplace=True)
+    df2.drop(columns=['Timestamp','Email Address','Please enter your name','How comfortable were you with the Survey Questions?','Please feel free to provide any kind of feedback!'],axis = 1,inplace=True)
 
     #changing column names of df2 to that of df1
     cols = df1.columns

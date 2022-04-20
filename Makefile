@@ -33,8 +33,6 @@ conda-update:
 ifeq (True,$(HAS_CONDA))
 			@echo ">>> Detected conda, creating/updating conda environment."
 			conda env update --prune -f env.yml
-
-
 else
 			@echo ">>> conda not detected, please use a shell configured with conda. Use "Anaconda Prompt" for Windows. Please download and install Anaconda if you don't already have it. Exiting..."
 endif
@@ -71,8 +69,10 @@ data:
 	@# Help: Download the data from the source and save it to the data/raw/ directory
 	$(CONDA_ACTIVATE) mentalHealth
 	kaggle datasets download $(DATA_URL) -p $(DATA_DIR)
-	unzip $(DATA_DIR)*.zip -d $(DATA_DIR)
+	unzip $(DATA_DIR)*.zip -d $(DATA_DIR) -A
 	rm -f $(DATA_DIR)*.zip
+	wget --no-check-certificate --output-document=$(DATA_DIR)survey.csv 'https://docs.google.com/spreadsheets/d/1Zga_eVHZOktbAgTKevxUL_2cQlkQCJjsw4WA_tyHn2w/export?format=csv'
+
 data_merge:
 	@# Help: Combine existing data and latest survey data and save it to$(DATA_INTERIM_DIR) directory
 	$(CONDA_ACTIVATE) mentalHealth
@@ -91,6 +91,8 @@ app:
 docker:
 	@# Help: Build the docker image
 	DOCKER_BUILDKIT=1 docker build -f "Dockerfile" -t mentalhealth .
+	docker tag mentalhealth:latest mentalhealth:v1.0.0
+	docker run -d -p 8000:8000 mentalhealth
 
 .DEFAULT_GOAL := help
 # Arcane incantation to print all the targets along with their descriptions mentioned with "@# Help: <<Description>>", from https://stackoverflow.com/a/65243296/13749426. Check https://stackoverflow.com/a/20983251/13749426 and https://stackoverflow.com/a/28938235/13749426 for coloring terminal outputs.
