@@ -89,6 +89,11 @@ train_model:
 	$(CONDA_ACTIVATE) mentalHealth
 	python $(SCRIPT_DIR)model/train_model.py $(DATA_PROCESSED_DIR) $(MODEL_DIR)
 
+make_prediction:
+	@# Help: Load the trained model and make predictions using it
+	$(CONDA_ACTIVATE) mentalHealth
+	python $(SCRIPT_DIR)model/prediction.py $(DATA_PROCESSED_DIR) $(MODEL_DIR)
+
 
 app:
 	@# Help: Run the FastAPI app
